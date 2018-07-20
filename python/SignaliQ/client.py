@@ -21,6 +21,8 @@ import os.path as path
 import ssl
 import sys
 
+fake = True
+
 from SignaliQ.model.ProviderEventsUpdateMessage import ProviderEventsUpdateMessage
 
 __log__ = logging.getLogger(__name__)
@@ -56,6 +58,10 @@ class Client(object):
 
         :returns Bool: True if connection and channel is established successfully.
         """
+        if fake:
+            __log__.info("Connect called.")
+            return True
+
         params = self._build_connection_params()
 
         self._connection = amqp.Connection(**params)
@@ -83,6 +89,10 @@ class Client(object):
 
         :returns: Result of the connection close method.
         """
+        if fake:
+            __log__.info("Disconnect called.")
+            return True
+
         return self._connection.close()
 
     def send(self, message):
@@ -95,6 +105,10 @@ class Client(object):
         :returns: Promise representing the publish request
         :rtype: Promise
         """
+        if fake:
+            __log__.info("Send called. %s", message)
+            return True
+
         if self._connection is None or self._channel is None:
             __log__.error("Connection or channel is not defined! Must call `connect` first!")
             return False
