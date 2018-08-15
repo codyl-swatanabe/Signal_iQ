@@ -56,7 +56,6 @@ class Client(object):
 
         :returns Bool: True if connection and channel is established successfully.
         """
-
         params = self._build_connection_params()
 
         self._connection = amqp.Connection(**params)
@@ -84,7 +83,6 @@ class Client(object):
 
         :returns: Result of the connection close method.
         """
-
         return self._connection.close()
 
     def send(self, message):
@@ -97,7 +95,6 @@ class Client(object):
         :returns: Promise representing the publish request
         :rtype: Promise
         """
-
         if self._connection is None or self._channel is None:
             __log__.error("Connection or channel is not defined! Must call `connect` first!")
             return False
