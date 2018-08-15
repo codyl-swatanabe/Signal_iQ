@@ -4,7 +4,7 @@
 # Copyright (c) 2017-2018 SIOS Technology Corp. All rights reserved.
 ##############################################################################
 import logging
-from enum import Enum
+# from enum import Enum
 __log__ = logging.getLogger(__name__)
 
 class AppCluster(object):
@@ -29,6 +29,11 @@ class AppCluster(object):
         self.state = state
 
 # Enum for cluster type.
-class AppClusterType(Enum):
-    WSFC = "WSFC"
-    LifeKeeper = "LifeKeeper"
+#class AppClusterType(Enum):
+#    WSFC = "WSFC"
+#    LifeKeeper = "LifeKeeper"
+
+# fake for debug
+class AppClusterType(object):
+    def __init__(self, type):
+        self.type = type
