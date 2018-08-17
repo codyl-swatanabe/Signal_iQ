@@ -56,6 +56,7 @@ class Client(object):
 
         :returns Bool: True if connection and channel is established successfully.
         """
+        __log__.info("############### Connection called.")
         params = self._build_connection_params()
 
         self._connection = amqp.Connection(**params)
